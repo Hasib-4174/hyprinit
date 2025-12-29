@@ -1,0 +1,120 @@
+{
+    "custom/logo": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "rofi -show drun"
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+          "1": "1", "2": "2", "3": "3", "4": "4", "5": "5",
+          "6": "6", "7": "7", "8": "8", "9": "9", "10": "10"
+        }
+    },
+    "custom/sep": {
+        "format": "  ",
+        "interval": 0
+    },
+    "custom/window_icons": {
+        "exec": "~/.config/waybar/scripts/window_icons.sh",
+        "interval": 2,
+        "return-type": "text",
+        "tooltip": false
+    },
+    "hyprland/window": {
+        "format": "{class}",
+        "max-length": 50,
+        "tooltip": false,
+        "interval": 2
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "custom/update": {
+        "exec": "~/.config/waybar/scripts/check_updates.sh",
+        "return-type": "json",
+        "interval": 3600,
+        "on-click": "alacritty -e sudo pacman -Syu"
+    },
+    "pulseaudio": {
+        "format": " {volume:02d}%",
+        "tooltip": false,
+        "scroll-step": 5,
+        "on-click": "pavucontrol"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "adapter": "AC",
+        "interval": 1,
+        "states": {"warning": 30, "critical": 15},
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "Capacity: {capacity}% ({power}W)\nTime: {time}",
+        "tooltip-format-charging": "Charging: {capacity}% \n({power}W) - {time} until full", 
+        "tooltip-format-full": "Full: {capacity}%"
+    },
+    "network": {
+        "format-wifi": "  {ipaddr}",
+        "format-ethernet": "󰈀",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "SSID: {essid}\nIP: {ipaddr}\nUp: {bandwidthUpBits} | Down: {bandwidthDownBits}\nSignal: {frequency}MHz {signalStrength}%",
+        "format-disconnected": "󰖪 ",
+        "on-click": "alacritty -e 'nmtui'"
+    },
+    "custom/cpu": {
+        "exec": "~/.config/waybar/scripts/cpu_info.py",
+        "return-type": "json",
+        "interval": 2,
+        "format": " {}",
+        "tooltip": true
+    },
+    "custom/gpu": {
+        "exec": "~/.config/waybar/scripts/gpu_info.py",
+        "return-type": "json",
+        "format": "GPU  {}",
+        "interval": 2, // Update every 2 seconds
+        "tooltip": true
+    },
+    "memory": {
+        "interval": 1,
+        "format": " {used:0.1f}GiB",
+        "tooltip-format": "Used: {used:0.1f}GiB\nFree: {free:0.1f}GiB"
+    },
+    "disk": {
+        "interval": 30,
+        "format": " /{free}",
+        "path": "/",
+        "tooltip-format": "Root: {free}\nHome: {specific_free: /home}"
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+    "custom/swaync": {
+        "tooltip": false,
+        "format": "󰩤",
+        "on-click": "swaync-client -t -sw"
+    },
+    "custom/control-panel": {
+    "format": " 󰍜 ",
+    "tooltip": "Toggle Control Panel",
+    "on-click": "~/code/overlay-panel/build/overlay-panel toggle"
+}
+}

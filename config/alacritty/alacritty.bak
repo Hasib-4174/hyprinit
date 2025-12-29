@@ -1,0 +1,80 @@
+#[font]
+#size = 11
+
+#[font.normal]
+#family = "JetBrainsMono Nerd Font"
+#style = "Regular"
+
+# alacritty.toml
+
+[window]
+# Window dimensions (in columns and lines)
+dimensions = { columns = 100, lines = 30 }
+
+# Window startup mode
+startup_mode = "Windowed"  # Options: "Windowed", "Maximized", "Fullscreen"
+
+# Window decorations
+decorations = "Full"  # Options: "Full", "None", "Transparent", "Buttonless"
+
+# Window opacity (0.0 = fully transparent, 1.0 = fully opaque)
+opacity = 1 
+
+[font]
+# Normal font face
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+
+# Bold font face
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+
+# Italic font face
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+
+# Font size in points
+size = 14.0
+
+# ====================================================================
+# [COLOR SCHEME:CATPPUCCIN MOCHA]
+# ====================================================================
+
+[colors.primary]
+background = "#1E1E2E"
+foreground = "#D9E0EE"
+
+[colors.normal]
+black   = "#6E6C7E"
+red     = "#F38BA8"
+green   = "#A6E3A1"
+yellow  = "#F9E2AF"
+blue    = "#89B4FA"
+magenta = "#F5C2E7"
+cyan    = "#94E2D5"
+white   = "#BAC2DE"
+
+[colors.bright]
+black   = "#7F849C"
+red     = "#F38BA8"
+green   = "#A6E3A1"
+yellow  = "#F9E2AF"
+blue    = "#89B4FA"
+magenta = "#F5C2E7"
+cyan    = "#94E2D5"
+white   = "#A6ADC8"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[keyboard]
+# Example custom key binding
+bindings = [
+  { key = "V", mods = "Control|Shift", action = "Paste" },
+  { key = "C", mods = "Control|Shift", action = "Copy" },
+  { key = "Q", mods = "Control|Shift", action = "Quit" },
+]
+
+[terminal]
+
+[terminal.shell]
+# You can set your default shell here, like bash, zsh, or fish
+program = "/usr/bin/zsh"
+

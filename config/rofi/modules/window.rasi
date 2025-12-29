@@ -1,0 +1,3 @@
+configuration {
+    window-format: "{w}  {c}  {t}";
+}

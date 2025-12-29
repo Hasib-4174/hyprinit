@@ -1,0 +1,78 @@
+/* modern-dark.rasi — elegant Wayland Rofi theme */
+
+@import "~/.config/rofi/modules/drun.rasi"
+@import "~/.config/rofi/modules/run.rasi"
+@import "~/.config/rofi/modules/window.rasi"
+// @import "~/.config/rofi/modules/ssh.rasi"
+
+* {
+    background-color: #1E1E2Edd;   /* semi-transparent dark */
+    text-color: #D9E0EE;
+    border-color: #313244;
+    highlight: #89B4FA;
+    accent: #89B4FA;
+    border-radius: 8px;
+    font: "JetBrainsMono Nerd Font 15";
+}
+
+window {
+    width: 40%;
+    border: 2px;
+    padding: 10px;
+    location: center;
+    transparency: "real";
+    font: "Sans 20";
+}
+
+mainbox {
+    border: 0;
+    children: [inputbar, listview, mode-switcher];
+}
+
+inputbar {
+    margin: 5px 0px;
+    padding: 6px 10px;
+    broder-color: @border-color;
+    border-radius: 6px;
+    text-color: @text-color;
+    background-color: #181825cc;
+}
+
+listview {
+    margin: 11px 0;
+    dynamic: true;
+    lines: 9;
+    columns: 1;
+}
+
+element {
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @background-color; //@highlight
+    border: 2px;
+    border-color: white;
+    text-color: #1E1E2E;
+}
+
+mode-switcher {
+    spacing: 12px;
+    padding: 6px 0 0 0;
+    border: 0;
+    orientation: horizontal;
+    halign: center;
+}
+
+button {
+    padding: 4px 12px;
+    border-radius: 6px;
+    background-color: transparent;
+    text-color: @text-color;
+}
+
+button selected {
+    background-color: @highlight;
+    text-color: #1E1E2E;
+}

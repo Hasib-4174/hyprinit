@@ -1,0 +1,139 @@
+## =============================================
+##   NeoNano — Modern, Elegant, Performant Nano
+##   Tuned for terminal zen
+## =============================================
+
+## --- Core Editing Behavior ---
+
+set autoindent              # Smart indentation for clean code
+set tabsize 4               # 4-space indentation standard
+set tabstospaces            # Use spaces instead of tabs
+# set smooth                  # Smooth scrolling
+set softwrap                # Soft wrap long lines
+set breaklonglines          # Auto wrap hard lines at set width
+set atblanks                # Wrap only at blank spaces
+set trimblanks              # Remove trailing whitespace on save
+set constantshow            # Always show cursor position
+set smarthome               # Smart Home key navigation
+set linenumbers             # Show line numbers
+set indicator               # Scrollbar indicator on right side
+set positionlog             # Remember cursor between sessions
+set historylog              # Save search/replace history
+set zap                     # Allow backspace/delete on marked text
+set boldtext                # Use bold for clarity
+set unix                    # Use LF line endings
+set multibuffer             # Multi-buffer support
+set quickblank              # Instant message clearing
+set showcursor              # Show cursor in help/menu modes
+set afterends               # Move cursor after line ends
+set locking                 # Prevent accidental multi-edit conflicts
+set fill 80                 # Auto wrap at 80 characters
+set guidestripe 80          # Vertical guide at column 80
+
+## --- Interface Aesthetics (Theme & Colors) ---
+
+## Base: Midnight Elegance (optimized for dark terminals)
+set titlecolor      bold,black,brightblue
+set promptcolor     bold,black,brightgreen
+set statuscolor     bold,white,blue
+set errorcolor      bold,white,red
+set selectedcolor   black,brightcyan
+set spotlightcolor  black,yellow
+set numbercolor     brightcyan
+set functioncolor   bold,brightgreen
+set keycolor        brightwhite
+set scrollercolor   brightcyan
+set stripecolor     ,brightblack   # Subtle background stripe
+
+## Optional Transparent feel (for semi-transparent terminals)
+# set stripecolor ,#00000000
+
+## --- Syntax Highlighting ---
+
+## Include all available syntaxes
+include /usr/share/nano/*.nanorc
+include /usr/share/nano/extra/*.nanorc
+include /usr/share/nano-syntax-highlighting/*.nanorc
+
+## --- Custom Lightweight Syntax Enhancements ---
+syntax "todo" "\.md$|\.txt$|README|TODO"
+color brightyellow "TODO|FIXME|NOTE|BUG|HACK|OPTIMIZE|IMPORTANT"
+color brightgreen "✓|✔|✅"
+color brightred "✗|❌|ERROR|FAIL"
+color cyan "#.*"
+
+syntax "config" "\.(rc|conf|cfg|ini|desktop)$"
+color brightyellow "^[[:space:]]*\[.*\]"
+color brightcyan "=[[:space:]]*[^#;]+"
+color brightblack "#.*|;.*"
+
+syntax "json" "\.json$"
+color brightcyan "\"[a-zA-Z0-9_]+\"(?=\s*:)"
+color brightgreen "[0-9]+|true|false|null"
+color brightyellow "\"[^\"]*\""
+color brightblack "[{}:,]"
+
+## --- Keybindings (Intuitive Modern Workflow) ---
+
+## Navigation
+bind ^A home main
+bind ^E end main
+bind ^P prevword main
+bind ^N nextword main
+bind ^L refresh main
+bind ^Z suspend main
+
+## Search & Replace
+bind ^F whereis all
+bind ^B findprevious all
+bind ^\ replace all
+bind M-W findnext all
+
+## File Operations
+bind ^O writeout main
+bind ^R insert main
+bind ^X exit all
+bind M-S writeout main
+
+## Cut/Copy/Paste
+bind ^K cut main
+bind M-6 copy main
+bind ^U paste all
+bind M-T cutrestoffile execute
+
+## Undo/Redo
+bind M-U undo main
+bind M-E redo main
+
+## Formatting Tools
+bind M-F formatter main
+bind M-B linter main
+bind M-K comment main
+
+## Clipboard Integration (Optional)
+# Requires xclip or xsel installed
+# bind M-C "{execute}| xclip -selection clipboard {enter}{undo}" main
+# bind M-V "{execute}xclip -o -selection clipboard {enter}" main
+
+## --- Optional Productivity Tweaks ---
+
+# set mouse              # Uncomment for full mouse support
+# set casesensitive      # Case-sensitive searching
+# set regexp             # Enable regex search mode
+# set speller "aspell -x -c"
+# set whitespace "·"     # Visualize spaces
+# set punct "•"          # Visualize punctuation
+# set wordbounds
+# set wordchars "_-"
+
+## --- Backup & Safety ---
+
+set backup
+set backupdir "~/.nano_backups"
+# set operatingdir "~"        # Restrict file access to home dir for safety
+# set tempfile                # Safer writes: save to temp before replacing
+
+## --- Hidden Charm ---
+## Add a subtle nano startup greeting banner (comment out to disable)
+# set title "NeoNano — Where Simplicity Meets Power ✨"
+

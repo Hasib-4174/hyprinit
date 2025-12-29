@@ -1,0 +1,13 @@
+[Default]
+# This defines the directory where screenshots will be saved.
+# Using $HOME/Pictures/Screenshots is standard.
+save_dir=$HOME/Pictures/Screenshots
+
+# This defines the filename format. %Y%m%d-%H%M%S is a timestamp.
+save_filename_format=screenshots_%Y%m%d-%H%M%S.png
+
+# Other optional but useful defaults:
+show_panel=true
+line_size=5
+text_size=20
+early_exit=true

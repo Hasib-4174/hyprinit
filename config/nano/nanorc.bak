@@ -1,0 +1,97 @@
+## ===========================
+##     Modern Nano Setup
+## ===========================
+
+## === Basic Behavior ===
+set autoindent
+set smooth
+set linenumbers
+set softwrap
+set tabsize 4
+set tabstospaces
+set titlecolor brightcyan,black
+set constantshow
+set indicator
+set morespace
+set showcursor
+set suspend
+set zap
+set smarthome
+set positionlog
+set trimblanks
+set afterends
+
+## === UI / Display ===
+set mouse
+set multibuffer
+set quickblank
+set emptyline
+set minibar
+set scrollbar
+set fill 80
+set wordbounds
+set functioncolor brightcyan
+set numbercolor green
+set statuscolor brightwhite,blue
+set selectedcolor black,green
+set titlecolor brightwhite,magenta
+set errorcolor brightwhite,red
+set stripecolor ,#222222
+
+## === Search / Replace ===
+set casesensitive
+set regexp
+bind ^W whereis main
+bind ^R replace main
+
+## === Navigation Shortcuts ===
+bind ^G exit main
+bind ^L refresh main
+bind ^N nextword main
+bind ^P prevword main
+bind ^K cut main
+bind ^U uncut main
+
+## === Syntax Highlighting ===
+syntax "python" "\.py$"
+color brightyellow "def|class|return|if|else|elif|while|for|import|from|as|try|except|with|lambda|print"
+color brightgreen "[0-9]+"
+color brightred "\".*\"|'.*'"
+color cyan "#.*"
+
+syntax "c" "\.(c|h)$"
+color brightyellow "int|float|double|char|void|return|if|else|for|while|struct|typedef|include|define|switch|case|break"
+color brightgreen "[0-9]+"
+color brightmagenta "\".*\"|'.*'"
+color cyan "//.*"
+color cyan start="/\*" end="\*/"
+
+syntax "bash" "\.sh$"
+color brightyellow "if|then|else|fi|for|in|do|done|echo|while|read|function"
+color brightgreen "[0-9]+"
+color brightmagenta "\".*\"|'.*'"
+color cyan "#.*"
+
+syntax "html" "\.html?$"
+color brightyellow "(</?|/?>)"
+color brightmagenta "\"[^\"]*\""
+color brightcyan "=[ ]*"
+color brightgreen "(head|body|div|span|a|script|link|meta|title|h[1-6]|p|img|input|form|button)"
+
+syntax "javascript" "\.js$"
+color brightyellow "function|return|let|const|var|if|else|for|while|switch|case|break|continue|try|catch|finally|import|from|export|default|class|extends|new|this"
+color brightmagenta "\".*\"|'.*'|`.*`"
+color brightgreen "[0-9]+"
+color cyan "//.*"
+color cyan start="/\*" end="\*/"
+
+## === File Types ===
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/*.syntax"
+
+## === Fun Extras ===
+set backup
+set backupsdir "~/.nano_backups"
+set whitespace "·"
+set punct "•"
+set matchbrackets "(<[{)>]}"

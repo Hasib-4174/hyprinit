@@ -1,0 +1,33 @@
+# ===== MAIN SETTINGS =====
+font=Cozette 11
+format=<b>%a ⏵</b> %s\n%b
+sort=-time
+anchor=top-right
+layer=overlay
+background-color=#ffffffDD
+text-color=#000000
+width=300
+height=110
+margin=10
+padding=10
+border-size=0
+border-radius=0
+icons=0
+max-icon-size=64
+default-timeout=5000
+ignore-timeout=1
+
+# ===== URGENCY =====
+[urgency=normal]
+
+[urgency=high]
+default-timeout=0
+
+# ===== APP RULES =====
+[app-name=lightcord]
+
+[summary~="log-.*"]
+
+# Hide specific Lightcord notifications (orz/otl/sto)
+[app-name=lightcord,summary~="(.*(^| )(orz|ORZ|sto|STO|otl|OTL)( |$).*)"]
+invisible=1   
