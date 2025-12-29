@@ -1,0 +1,32 @@
+# Terminal & file manager
+alacritty
+thunar
+
+# Launchers
+rofi
+rofi-emoji
+wofi
+
+# Browsers
+brave-bin
+
+# System utilities
+blueman
+pavucontrol
+brightnessctl
+
+# Monitoring
+btop
+htop
+fastfetch
+
+# Media / files
+imv
+localsend-bin
+
+# Productivity
+libreoffice-fresh
+
+# Misc
+tree
+trash-cli

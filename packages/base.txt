@@ -1,0 +1,21 @@
+# Core system
+base
+linux
+linux-firmware
+
+# Build & AUR
+git
+base-devel
+
+# Networking
+networkmanager
+network-manager-applet
+
+# CLI essentials
+wget
+curl
+tar
+unzip
+
+# Permissions / portals
+polkit

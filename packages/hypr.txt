@@ -1,0 +1,36 @@
+# Compositor
+hyprland
+
+# Portals
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-wlr
+xdg-utils
+
+# Status bar & notifications
+waybar
+mako
+wlogout
+
+# Lock / idle
+hyprlock
+hypridle
+
+# Wallpapers
+swww
+
+# Screenshots & region selection
+grim
+slurp
+swappy
+
+# Clipboard & debugging
+wl-clipboard
+wev
+
+# Audio / video stack
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+wireplumber
+gst-plugin-pipewire

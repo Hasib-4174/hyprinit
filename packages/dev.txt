@@ -1,0 +1,31 @@
+# Editors
+neovim
+vim
+nano
+nano-syntax-highlighting
+tmux
+stow
+
+# Languages & tooling
+nodejs
+npm
+python-pip
+ipython
+jq
+
+# Virtualization (optional)
+libvirt
+virt-manager
+virt-viewer
+qemu-base
+vde2
+
+# Containers (manual enable)
+docker
+
+# System tools
+reflector
+smartmontools
+powerstat
+radeontop
+rclone
