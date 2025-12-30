@@ -1,11 +1,17 @@
-# Terminal & file manager
+# ============================
+# apps.txt - Desktop Applications
+# ============================
+# Essential desktop applications for daily use
+
+# Terminal
 alacritty
-thunar
+
+# File Manager
+dolphin
 
 # Launchers
 rofi
 rofi-emoji
-wofi
 
 # Browsers
 brave-bin
@@ -22,11 +28,3 @@ fastfetch
 
 # Media / files
 imv
-localsend-bin
-
-# Productivity
-libreoffice-fresh
-
-# Misc
-tree
-trash-cli

@@ -1,21 +1,37 @@
+# ============================
+# base.txt - Core System Packages
+# ============================
+# Essential system packages for Arch Linux
+# These are installed via pacman
+
 # Core system
 base
+base-devel
 linux
 linux-firmware
+amd-ucode
+sof-firmware
 
 # Build & AUR
 git
-base-devel
 
 # Networking
 networkmanager
 network-manager-applet
+iwd
+wireless_tools
+bluez
+bluez-utils
 
 # CLI essentials
 wget
-curl
-tar
 unzip
+7zip
+less
+tree
+trash-cli
+jq
 
 # Permissions / portals
 polkit
+xdg-utils

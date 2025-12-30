@@ -1,10 +1,19 @@
+# ============================
+# hypr.txt - Hyprland Stack
+# ============================
+# Hyprland compositor and Wayland ecosystem packages
+
 # Compositor
 hyprland
+hyprpaper
 
-# Portals
+# Display Manager
+sddm
+qt5-wayland
+qt6-wayland
+
+# Portals (required for screen sharing, file dialogs, etc.)
 xdg-desktop-portal-hyprland
-xdg-desktop-portal-wlr
-xdg-utils
 
 # Status bar & notifications
 waybar
@@ -27,10 +36,11 @@ swappy
 wl-clipboard
 wev
 
-# Audio / video stack
+# Audio / video stack (PipeWire)
 pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
 wireplumber
 gst-plugin-pipewire
+libpulse
