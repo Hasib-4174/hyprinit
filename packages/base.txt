@@ -31,7 +31,14 @@ less
 tree
 trash-cli
 jq
+xclip
 
 # Permissions / portals
 polkit
 xdg-utils
+
+# Fonts
+otf-font-awesome
+noto-fonts
+noto-fonts-emoji
+ttf-jetbrains-mono-nerd

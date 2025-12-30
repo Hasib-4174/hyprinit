@@ -28,3 +28,8 @@ fastfetch
 
 # Media / files
 imv
+
+# Media Players
+vlc-git
+vlc-plugins-base
+vlc-plugins-extra
