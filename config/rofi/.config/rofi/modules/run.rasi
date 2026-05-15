@@ -1,3 +1,0 @@
-configuration {
-    run-command: "{cmd}";
-}

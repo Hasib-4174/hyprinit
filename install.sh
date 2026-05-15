@@ -8,9 +8,9 @@ set -euo pipefail
 #
 # This script:
 #   1. Loads user variables from vars.conf
-#   2. Performs sanity checks (not root, Arch Linux, etc.)
+#   2. Performs sanity checks (not root, Arch Linux, git, sudo, etc.)
 #   3. Installs packages (pacman + AUR)
-#   4. Sets up configs using GNU stow
+#   4. Clones dotfiles and deploys configs using GNU Stow
 #   5. Enables essential services
 #   6. Runs post-install verification
 #
@@ -92,10 +92,23 @@ if ! command -v sudo >/dev/null; then
 fi
 print_success "sudo available"
 
+# Check git
+if ! command -v git >/dev/null; then
+    print_warn "git not found, attempting to install..."
+    if su -c 'pacman -S --noconfirm git' 2>/dev/null || sudo pacman -S --noconfirm git 2>/dev/null; then
+        print_success "git installed"
+    else
+        print_error "Failed to install git. Install manually: sudo pacman -S git"
+        exit 1
+    fi
+else
+    print_success "git available"
+fi
+
 # Check internet connectivity
-if ! ping -c 1 archlinux.org &>/dev/null; then
+if ! ping -c 1 -W 5 archlinux.org &>/dev/null; then
     print_warn "No internet connection detected"
-    echo "       Package installation may fail"
+    echo "       Package installation and dotfiles cloning may fail"
 else
     print_success "Internet connectivity confirmed"
 fi
@@ -113,9 +126,9 @@ else
 fi
 
 # ----------------------------
-# Step 2: Config setup
+# Step 2: Dotfiles & config setup
 # ----------------------------
-print_header "STEP 2: SETTING UP CONFIGS"
+print_header "STEP 2: DEPLOYING DOTFILES & CONFIGS"
 
 if [[ -f "$SCRIPTS_DIR/setup_configs.sh" ]]; then
     bash "$SCRIPTS_DIR/setup_configs.sh"
@@ -149,6 +162,8 @@ fi
 # ----------------------------
 # Final message
 # ----------------------------
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+
 print_header "HYPRLAND SETUP COMPLETE!"
 
 echo -e "${GREEN}
@@ -174,13 +189,17 @@ echo -e "${GREEN}
 ║                                                                ║
 ╠════════════════════════════════════════════════════════════════╣
 ║                                                                ║
-║   CONFIGURATION:                                               ║
+║   DOTFILES:                                                    ║
 ║                                                                ║
-║   Configs location:  ~/configfiles/                            ║
-║   Symlinked to:      ~/.config/                                ║
+║   Dotfiles repo:    ~/dotfiles/                                ║
+║   Managed with:     GNU Stow                                   ║
+║   Symlinked to:     ~/.config/                                 ║
 ║                                                                ║
-║   To edit configs, modify files in ~/configfiles/              ║
+║   To edit configs, modify files in ~/dotfiles/                 ║
 ║   Changes apply immediately (symlinked)                        ║
+║                                                                ║
+║   To re-stow:  cd ~/dotfiles && stow --restow <package>       ║
+║   To unstow:   cd ~/dotfiles && stow -D <package>             ║
 ║                                                                ║
 ╚════════════════════════════════════════════════════════════════╝
 ${NC}"

@@ -2,61 +2,85 @@
 
 # 🚀 HyprInit
 
-**A minimal, automated Hyprland setup for fresh Arch Linux installations.**
+**Automated Hyprland setup for fresh Arch Linux installations.**
 
-[![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://archlinux.org/)
-[![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?style=for-the-badge&logo=wayland&logoColor=black)](https://hyprland.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)](https://archlinux.org/)[![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?style=for-the-badge&logo=wayland&logoColor=black)](https://hyprland.org/)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 </div>
 
-**HyprInit** provides a complete, ready-to-use configuration for a minimal and functional Arch Linux desktop using the Hyprland compositor. It automates the entire setup process—from installing packages to symlinking configurations with GNU Stow—allowing you to get up and running with a beautiful Hyprland workflow in minutes.
+**HyprInit** automates the setup of a complete Hyprland desktop on a fresh Arch Linux installation. It installs packages, clones your dotfiles, deploys configs with GNU Stow, and enables services — getting you from a minimal Arch install to a fully working Wayland desktop in minutes.
+
+> [!IMPORTANT]
+> **HyprInit ≠ Dotfiles.** This repository only contains the *installer* — scripts and package lists. Your actual configs (Hyprland, Waybar, Rofi, etc.) live in a separate [dotfiles repository](https://github.com/Hasib-4174/dotfiles), managed with GNU Stow.
 
 ---
 
-## ✨ Features
+## 🏗️ Architecture
 
-- **Compositor**: [Hyprland](https://hyprland.org/) - Dynamic tiling Wayland compositor with smooth animations
-- **Display Manager**: [SDDM](https://github.com/sddm/sddm) - Modern Qt-based display manager
-- **Status Bar**: [Waybar](https://github.com/Alexays/Waybar) - Highly customizable Wayland status bar
-- **Application Launcher**: [Rofi](https://github.com/davatorium/rofi) - Versatile application launcher with emoji support
-- **Terminal**: [Alacritty](https://alacritty.org/) - Fast, GPU-accelerated terminal emulator
-- **File Manager**: [Dolphin](https://apps.kde.org/dolphin/) - Powerful KDE file manager
-- **Browser**: [Brave](https://brave.com/) - Privacy-focused Chromium-based browser
-- **Editors**: [Neovim](https://neovim.io/) + [VS Code](https://code.visualstudio.com/) - Modern text editing
-- **Shell**: [Zsh](https://www.zsh.org/) with [Zinit](https://github.com/zdharma-continuum/zinit) + [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
-- **Notifications**: [Mako](https://github.com/emersion/mako) - Lightweight Wayland notification daemon
-- **Screenshots**: [Grim](https://sr.ht/~emersion/grim/) + [Slurp](https://github.com/emersion/slurp) + [Swappy](https://github.com/jtheoof/swappy)
-- **Wallpapers**: [SWWW](https://github.com/LGFae/swww) - Efficient animated wallpaper daemon
-- **Lock Screen**: [Hyprlock](https://github.com/hyprwm/hyprlock) - Secure screen locker for Hyprland
-- **Audio**: [PipeWire](https://pipewire.org/) - Modern multimedia framework
-- **Fonts**: JetBrains Mono Nerd Font, Noto Fonts, Font Awesome
-- **Media**: VLC for video playback
-- **Config Management**: [GNU Stow](https://www.gnu.org/software/stow/) - Symlink farm manager for dotfiles
+```
+┌─────────────────────────────────────────────────────────┐
+│                      hyprinit/                          │
+│  (this repo — installer only)                           │
+│                                                         │
+│  install.sh ──► install_packages.sh (pacman + AUR)      │
+│             ──► setup_configs.sh    (clone + stow)      │
+│             ──► enable_services.sh  (systemd)           │
+│             ──► sanity_check.sh     (verification)      │
+│                                                         │
+│  packages/     Package lists (base, hypr, apps, dev)    │
+│  vars.conf     User-configurable settings               │
+└─────────────────────────┬───────────────────────────────┘
+                          │ git clone
+                          ▼
+┌─────────────────────────────────────────────────────────┐
+│                    ~/dotfiles/                          │
+│  (separate repo — your actual configs)                  │
+│                                                         │
+│  hypr/.config/hypr/          GNU Stow structure         │
+│  waybar/.config/waybar/      ──► ~/.config/waybar/      │
+│  alacritty/.config/alacritty/──► ~/.config/alacritty/   │
+│  rofi/.config/rofi/          ──► ~/.config/rofi/        │
+│  nvim/.config/nvim/          ──► ~/.config/nvim/        │
+│  zshrc/.zshrc                ──► ~/.zshrc               │
+│  ...                                                    │
+└─────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 📸 Screenshots
+## ✨ What's Included
 
-<!-- Add your screenshots here -->
-<!-- ![Desktop](screenshots/desktop.png) -->
-<!-- ![Rofi](screenshots/rofi.png) -->
-<!-- ![Waybar](screenshots/waybar.png) -->
-
-*Coming soon...*
+| Category | Packages |
+|----------|----------|
+| **Compositor** | [Hyprland](https://hyprland.org/), Hyprpaper, Hyprlock, Hypridle |
+| **Display Manager** | SDDM (Qt5/Qt6 Wayland) |
+| **Status Bar** | [Waybar](https://github.com/Alexays/Waybar) |
+| **Launcher** | [Rofi](https://github.com/davatorium/rofi) + Emoji support |
+| **Terminal** | [Alacritty](https://alacritty.org/) |
+| **File Manager** | [Dolphin](https://apps.kde.org/dolphin/) |
+| **Browser** | [Brave](https://brave.com/) |
+| **Editors** | [Neovim](https://neovim.io/), [VS Code](https://code.visualstudio.com/), [Zed](https://zed.dev/) |
+| **Shell** | Zsh |
+| **Notifications** | [Mako](https://github.com/emersion/mako) |
+| **Screenshots** | Grim + Slurp + Swappy |
+| **Wallpapers** | [awww](https://github.com/LGFae/awww) (successor to swww) |
+| **Lock Screen** | Hyprlock |
+| **Audio** | PipeWire + WirePlumber |
+| **Media** | VLC, mpv |
+| **CLI Tools** | ripgrep, fd, fzf, bat, eza, btop, htop |
+| **Containers** | Docker + Docker Compose (optional) |
+| **Fonts** | JetBrains Mono Nerd Font, Noto Fonts, Font Awesome |
+| **Dotfile Mgmt** | [GNU Stow](https://www.gnu.org/software/stow/) |
 
 ---
 
 ## 🚀 Installation
 
-Setting up your Hyprland environment is simple. The `install.sh` script handles everything automatically.
-
 ### Prerequisites
 
 - A **fresh Arch Linux installation** (minimal profile recommended)
-- `git` installed
 - Active internet connection
-- **AMD GPU** (script includes AMD-specific drivers)
+- **AMD GPU** (includes AMD-specific drivers; modify for other GPUs)
 
 > [!WARNING]
 > This setup is designed for a **clean Arch Linux installation**. For best results, use a minimal installation without a desktop environment. If using `archinstall`, select the **'minimal' profile**.
@@ -67,220 +91,174 @@ Setting up your Hyprland environment is simple. The `install.sh` script handles 
 # Install git if not present
 sudo pacman -S git
 
-# Clone the repository
+# Clone the installer
 git clone https://github.com/Hasib-4174/hyprinit.git
 cd hyprinit
 
-# Make scripts executable
-chmod +x install.sh
+# Edit configuration (dotfiles repo URL, service toggles, etc.)
+nano vars.conf
 
 # Run the installer
+chmod +x install.sh
 ./install.sh
 
 # Reboot when complete
 sudo reboot
 ```
 
-### What the Script Does
+### Installation Flow
 
-1. ✅ **Installs AUR helper** (yay) if not present
-2. ✅ **Installs all packages** via pacman and AUR
-3. ✅ **Copies configs** to `~/configfiles/`
-4. ✅ **Symlinks configs** using GNU Stow to `~/.config/`
-5. ✅ **Enables services** (NetworkManager, Bluetooth, SDDM, PipeWire)
-6. ✅ **Runs verification** to confirm everything is set up
+The installer performs these steps in order:
+
+1. **Pre-flight checks** — Verifies: not root, Arch Linux, sudo, git, internet
+2. **Install packages** — Installs from `packages/` lists via pacman + AUR helper
+   - Order: `base.txt` → `hypr.txt` → `apps.txt` → `dev.txt`
+   - Installs AUR helper (yay) automatically if needed
+   - Skips already-installed packages
+3. **Deploy dotfiles** — Clones your dotfiles repo, stows selected packages
+   - If dotfiles already cloned → pulls latest changes
+   - Backs up conflicting configs before stowing
+4. **Enable services** — NetworkManager, Bluetooth, SDDM, Docker (optional), PipeWire
+5. **Verification** — Checks all commands, services, and symlinks
 
 After reboot, SDDM will greet you. Select **Hyprland** from the session dropdown.
 
 ---
 
-## 📦 Packages Included
+## 📦 Package Categories
 
 <details>
-<summary><b>Core System</b></summary>
+<summary><b>base.txt — Core System</b></summary>
 
-- `base`, `base-devel`, `linux`, `linux-firmware`
-- `amd-ucode`, `sof-firmware`
-- `networkmanager`, `bluez`, `bluez-utils`
-- `git`, `wget`, `unzip`, `7zip`, `jq`
-- Fonts: `noto-fonts`, `noto-fonts-emoji`, `ttf-jetbrains-mono-nerd`, `otf-font-awesome`
+Core system packages, networking, CLI essentials, fonts, and permissions.
+
+Includes: `base`, `base-devel`, `linux`, `linux-firmware`, `amd-ucode`, `networkmanager`, `bluez`, `git`, `curl`, `wget`, `jq`, `man-db`, `polkit`, `xdg-utils`, Noto/JetBrains Mono fonts.
 
 </details>
 
 <details>
-<summary><b>Hyprland Stack</b></summary>
+<summary><b>hypr.txt — Hyprland Stack</b></summary>
 
-- `hyprland`, `hyprpaper`, `hyprlock`, `hypridle`
-- `sddm`, `qt5-wayland`, `qt6-wayland`
-- `waybar`, `mako`, `wlogout`
-- `rofi`, `rofi-emoji`
-- `swww`, `grim`, `slurp`, `swappy`
-- `wl-clipboard`, `wev`
-- `xdg-desktop-portal-hyprland`
+Full Wayland compositor stack with all essential components.
+
+Includes: `hyprland`, `hyprpaper`, `hyprlock`, `hypridle`, `sddm`, `waybar`, `mako`, `wlogout`, `awww`, `grim`, `slurp`, `swappy`, `wl-clipboard`, `xdg-desktop-portal-hyprland`, `xdg-desktop-portal-gtk`, PipeWire audio stack.
 
 </details>
 
 <details>
-<summary><b>Audio (PipeWire)</b></summary>
+<summary><b>apps.txt — Desktop Applications</b></summary>
 
-- `pipewire`, `pipewire-alsa`, `pipewire-jack`, `pipewire-pulse`
-- `wireplumber`, `gst-plugin-pipewire`, `libpulse`
+Daily-use desktop applications.
 
-</details>
-
-<details>
-<summary><b>Applications</b></summary>
-
-- `alacritty` - Terminal
-- `dolphin` - File manager
-- `brave-bin` - Browser
-- `vlc` - Media player
-- `imv` - Image viewer
-- `blueman`, `pavucontrol`, `brightnessctl` - System utilities
-- `btop`, `htop`, `fastfetch` - Monitoring
+Includes: `alacritty`, `dolphin`, `brave-bin` (AUR), `rofi`, `rofi-emoji`, `vlc`, `mpv`, `imv`, `blueman`, `pavucontrol`, `brightnessctl`, `btop`, `htop`, `fastfetch`.
 
 </details>
 
 <details>
-<summary><b>Development</b></summary>
+<summary><b>dev.txt — Development Tools</b></summary>
 
-- `neovim`, `vim`, `nano`, `visual-studio-code-bin`
-- `tmux`, `stow`, `zsh`
-- `nodejs`, `npm`, `python-pip`, `ipython`
-- `vulkan-radeon`, `xf86-video-amdgpu`, `radeontop` - AMD GPU
+Development environment with editors, toolchains, and modern CLI tools.
+
+Includes: `neovim`, `vim`, `nano`, `visual-studio-code-bin` (AUR), `zed`, `tmux`, `stow`, `zsh`, `ripgrep`, `fd`, `fzf`, `bat`, `eza`, `nodejs`, `npm`, `python`, `gcc`, `cmake`, `docker`, `docker-compose`, AMD GPU tools (`vulkan-radeon`, `mesa`).
 
 </details>
-
----
-
-## ⌨️ Keybindings
-
-Keybindings are configured in `~/.config/hypr/keybinds.conf`. The main modifier is **ALT**.
-
-### Essential Bindings
-
-| Keybinding | Action |
-|------------|--------|
-| `Alt + Return` | Open Alacritty (Terminal) |
-| `Alt + E` | Open Dolphin (File Manager) |
-| `Alt + D` | Open Rofi (App Launcher) |
-| `Alt + Q` | Close active window |
-| `Alt + M` | Exit Hyprland |
-| `Alt + V` | Toggle floating window |
-| `Alt + L` | Lock screen (Hyprlock) |
-| `Alt + W` | Random wallpaper |
-| `Alt + S` | Screenshot |
-
-### Window Navigation (Vim-style)
-
-| Keybinding | Action |
-|------------|--------|
-| `Alt + H` | Focus left |
-| `Alt + J` | Focus down |
-| `Alt + K` | Focus up |
-| `Alt + L` | Focus right |
-
-### Workspaces
-
-| Keybinding | Action |
-|------------|--------|
-| `Alt + [1-9, 0]` | Switch to workspace 1-10 |
-| `Alt + Shift + [1-9, 0]` | Move window to workspace 1-10 |
-| `Alt + S` | Toggle scratchpad |
-| `Alt + Shift + S` | Move to scratchpad |
-| `Alt + Mouse Wheel` | Scroll through workspaces |
-
-### Media Keys
-
-| Key | Action |
-|-----|--------|
-| `Volume Up/Down` | Adjust volume |
-| `Mute` | Toggle mute |
-| `Brightness Up/Down` | Adjust screen brightness |
-| `Play/Pause/Next/Prev` | Media controls |
-
----
-
-## 📂 Configuration Structure
-
-All configurations use **GNU Stow** for symlink management:
-
-```
-hyprinit/
-├── install.sh              # Main installer
-├── vars.conf               # User settings (edit before install)
-├── README.md               # This file
-│
-├── packages/               # Package lists
-│   ├── base.txt            # System essentials
-│   ├── hypr.txt            # Hyprland stack
-│   ├── apps.txt            # Desktop applications
-│   └── dev.txt             # Development tools
-│
-├── config/                 # Stow-compatible configs
-│   ├── hypr/               # → ~/.config/hypr/
-│   │   └── .config/hypr/
-│   │       ├── hyprland.conf
-│   │       ├── keybinds.conf
-│   │       ├── appearance.conf
-│   │       └── ...
-│   ├── waybar/             # → ~/.config/waybar/
-│   ├── rofi/               # → ~/.config/rofi/
-│   ├── alacritty/          # → ~/.config/alacritty/
-│   ├── mako/               # → ~/.config/mako/
-│   ├── swww/               # → ~/.config/swww/
-│   ├── zsh/                # → ~/.zshrc
-│   ├── sddm/               # → /etc/sddm.conf.d/
-│   └── scripts/            # → ~/.local/bin/
-│
-└── scripts/                # Installation scripts
-    ├── install_packages.sh
-    ├── setup_configs.sh
-    ├── enable_services.sh
-    └── sanity_check.sh
-```
-
-### After Installation
-
-Configs are stored in `~/configfiles/` and symlinked to their destinations.
-
-```bash
-# Your configs live here:
-~/configfiles/
-├── hypr/
-├── waybar/
-├── rofi/
-└── ...
-
-# Symlinked to:
-~/.config/hypr → ~/configfiles/hypr/.config/hypr
-~/.config/waybar → ~/configfiles/waybar/.config/waybar
-# etc.
-```
-
-**To edit configs**: Modify files in `~/configfiles/` — changes apply immediately!
 
 ---
 
 ## ⚙️ Configuration
 
-Edit `vars.conf` before running the installer:
+Edit `vars.conf` **before** running the installer:
 
 ```bash
-# AUR helper (yay or paru)
-AUR_HELPER=yay
+# Dotfiles repo (your separate config repository)
+DOTFILES_REPO="https://github.com/Hasib-4174/dotfiles.git"
+DOTFILES_DIR="$HOME/dotfiles"
 
-# Default shell
-DEFAULT_SHELL=zsh
+# Which stow packages to deploy
+STOW_PACKAGES="alacritty awww fontconfig hypr mako nano nvim rofi scripts swappy waybar zshrc"
+
+# AUR helper
+AUR_HELPER=yay
 
 # Service toggles
 ENABLE_NETWORKMANAGER=true
 ENABLE_BLUETOOTH=true
 ENABLE_SDDM=true
-
-# Requires post-install setup (browser auth)
+ENABLE_DOCKER=false
 ENABLE_TAILSCALE=false
 ```
+
+---
+
+## 📂 Repository Structure
+
+```
+hyprinit/
+├── install.sh              # Main entry point
+├── vars.conf               # User configuration
+├── README.md               # This file
+│
+├── packages/               # Package lists (one per category)
+│   ├── base.txt            # System essentials
+│   ├── hypr.txt            # Hyprland + Wayland stack
+│   ├── apps.txt            # Desktop applications
+│   └── dev.txt             # Development tools
+│
+└── scripts/                # Installation scripts
+    ├── install_packages.sh # Package installation (pacman + AUR)
+    ├── setup_configs.sh    # Dotfiles clone + GNU Stow deployment
+    ├── enable_services.sh  # systemd service enablement
+    └── sanity_check.sh     # Post-install verification
+```
+
+### After Installation
+
+Configs live in `~/dotfiles/` and are symlinked via GNU Stow:
+
+```bash
+~/dotfiles/
+├── hypr/.config/hypr/          → ~/.config/hypr/
+├── waybar/.config/waybar/      → ~/.config/waybar/
+├── rofi/.config/rofi/          → ~/.config/rofi/
+├── alacritty/.config/alacritty/→ ~/.config/alacritty/
+├── nvim/.config/nvim/          → ~/.config/nvim/
+├── zshrc/.zshrc                → ~/.zshrc
+└── ...
+```
+
+**To edit configs**: Modify files in `~/dotfiles/` — changes apply immediately!
+
+---
+
+## 🔗 GNU Stow Usage
+
+GNU Stow creates symlinks from your dotfiles repo to the correct locations in `$HOME`.
+
+```bash
+cd ~/dotfiles
+
+# Stow a package (create symlinks)
+stow --target=$HOME hypr
+
+# Re-stow (refresh symlinks)
+stow --restow --target=$HOME waybar
+
+# Unstow (remove symlinks)
+stow -D rofi
+
+# Stow all packages at once
+stow --restow --target=$HOME alacritty awww hypr mako nvim rofi waybar zshrc
+```
+
+### How Stow Works
+
+```
+~/dotfiles/hypr/.config/hypr/hyprland.conf
+    ↓ stow
+~/.config/hypr/hyprland.conf  (symlink → ~/dotfiles/hypr/.config/hypr/hyprland.conf)
+```
+
+Each directory in `~/dotfiles/` is a "stow package." Stow mirrors its internal structure relative to the target directory (`$HOME`).
 
 ---
 
@@ -299,7 +277,7 @@ sudo systemctl start sddm.service
 <details>
 <summary><b>No Audio</b></summary>
 
-PipeWire uses user services. They start automatically on login. To manually start:
+PipeWire uses user services (socket-activated on login):
 
 ```bash
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
@@ -320,13 +298,18 @@ Or check Hyprland autostart: `~/.config/hypr/autostart.conf`
 </details>
 
 <details>
-<summary><b>Configs Not Symlinked</b></summary>
+<summary><b>Stow Conflicts</b></summary>
 
-Re-run the stow setup:
+If stow reports conflicts, the target file already exists and is not a symlink:
 
 ```bash
-cd ~/configfiles
-stow --restow --target=$HOME hypr waybar rofi alacritty
+# Option 1: Backup and re-stow
+mv ~/.config/hypr ~/.config/hypr.bak
+cd ~/dotfiles && stow --restow hypr
+
+# Option 2: Adopt existing files into stow (overwrites dotfiles repo)
+cd ~/dotfiles && stow --adopt --restow hypr
+# WARNING: --adopt replaces dotfiles repo content with existing files
 ```
 
 </details>
@@ -334,27 +317,54 @@ stow --restow --target=$HOME hypr waybar rofi alacritty
 <details>
 <summary><b>AUR Package Fails</b></summary>
 
-Try installing manually:
+```bash
+# Retry manually
+yay -S package-name
+
+# Or rebuild from clean state
+yay -S --rebuild package-name
+```
+
+</details>
+
+<details>
+<summary><b>Dotfiles Repo Not Cloning</b></summary>
 
 ```bash
-yay -S package-name
+# Check the URL in vars.conf
+grep DOTFILES_REPO vars.conf
+
+# Try cloning manually
+git clone https://github.com/Hasib-4174/dotfiles.git ~/dotfiles
 ```
 
 </details>
 
 ---
 
-## 🛠️ Customization Tips
+## ⚠️ Important Notes
 
-| Component | File to Edit |
-|-----------|--------------|
-| **Keybindings** | `~/.config/hypr/keybinds.conf` |
-| **Appearance** | `~/.config/hypr/appearance.conf` |
-| **Waybar modules** | `~/.config/waybar/config.jsonc` |
-| **Waybar style** | `~/.config/waybar/style.css` |
-| **Rofi theme** | `~/.config/rofi/config.rasi` |
-| **Terminal** | `~/.config/alacritty/alacritty.toml` |
-| **Shell** | `~/.zshrc` |
+- **AMD GPU only**: The default package lists include AMD-specific drivers. For Intel or NVIDIA, modify `dev.txt` accordingly.
+- **Fresh installs**: This installer is designed for clean Arch Linux systems. Using it on an existing desktop may cause conflicts.
+- **Re-runnable**: The installer is idempotent — safe to run multiple times. Already-installed packages are skipped, existing dotfiles are backed up.
+- **No destructive operations**: The installer never removes packages or deletes user files. Conflicts are backed up to `~/.config-backups/`.
+- **AUR packages**: Only `brave-bin` and `visual-studio-code-bin` require AUR. Everything else is from official repos.
+
+---
+
+## 🛠️ Post-Install Customization
+
+| Component | Config Location |
+|-----------|----------------|
+| **Hyprland** | `~/dotfiles/hypr/.config/hypr/` |
+| **Waybar** | `~/dotfiles/waybar/.config/waybar/` |
+| **Rofi** | `~/dotfiles/rofi/.config/rofi/` |
+| **Alacritty** | `~/dotfiles/alacritty/.config/alacritty/` |
+| **Neovim** | `~/dotfiles/nvim/.config/nvim/` |
+| **Mako** | `~/dotfiles/mako/.config/mako/` |
+| **Zsh** | `~/dotfiles/zshrc/.zshrc` |
+
+All paths are symlinked — editing files in `~/dotfiles/` directly updates the active config.
 
 ---
 

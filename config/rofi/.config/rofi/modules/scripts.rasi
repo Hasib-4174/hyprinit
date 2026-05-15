@@ -1,3 +1,0 @@
-configuration {
-    script: "~/.config/rofi/scripts/rofi-scripts-launcher.sh";
-}

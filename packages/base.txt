@@ -25,6 +25,7 @@ bluez-utils
 
 # CLI essentials
 wget
+curl
 unzip
 7zip
 less
@@ -32,6 +33,10 @@ tree
 trash-cli
 jq
 xclip
+
+# Documentation
+man-db
+man-pages
 
 # Permissions / portals
 polkit

@@ -29,7 +29,6 @@ fastfetch
 # Media / files
 imv
 
-# Media Players
-vlc-git
-vlc-plugins-base
-vlc-plugins-extra
+# Media Players (official repo — no AUR compilation needed)
+vlc
+mpv

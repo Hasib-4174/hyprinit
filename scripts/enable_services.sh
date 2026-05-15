@@ -24,6 +24,7 @@ fi
 ENABLE_NETWORKMANAGER="${ENABLE_NETWORKMANAGER:-true}"
 ENABLE_BLUETOOTH="${ENABLE_BLUETOOTH:-true}"
 ENABLE_SDDM="${ENABLE_SDDM:-true}"
+ENABLE_DOCKER="${ENABLE_DOCKER:-false}"
 ENABLE_TAILSCALE="${ENABLE_TAILSCALE:-false}"
 
 echo "[INFO] Enabling system services..."
@@ -70,6 +71,30 @@ if [[ "$ENABLE_SDDM" == "true" ]]; then
     else
         echo "    [SKIP] SDDM not installed"
     fi
+fi
+
+# ----------------------------
+# Docker
+# ----------------------------
+echo
+if [[ "$ENABLE_DOCKER" == "true" ]]; then
+    if command -v docker >/dev/null; then
+        enable_system_service "docker.service" "Docker Engine"
+        # Add current user to docker group if not already a member
+        if ! groups "$USER" | grep -q '\bdocker\b'; then
+            echo "    [INFO] Adding $USER to docker group..."
+            sudo usermod -aG docker "$USER"
+            echo "    [OK] Added to docker group"
+            echo "    [NOTE] Log out and back in for docker group to take effect"
+        else
+            echo "    [OK] $USER already in docker group"
+        fi
+    else
+        echo "  [SKIP] Docker not installed"
+    fi
+else
+    echo "  [SKIP] Docker (disabled in vars.conf)"
+    echo "    [INFO] Enable ENABLE_DOCKER=true and re-run if needed"
 fi
 
 # ----------------------------

@@ -14,6 +14,7 @@ qt6-wayland
 
 # Portals (required for screen sharing, file dialogs, etc.)
 xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
 
 # Status bar & notifications
 waybar
@@ -24,8 +25,8 @@ wlogout
 hyprlock
 hypridle
 
-# Wallpapers
-swww
+# Wallpapers (awww is the successor to swww, now in official repos)
+awww
 
 # Screenshots & region selection
 grim
